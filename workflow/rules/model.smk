@@ -21,6 +21,25 @@ rule geographic_filter:
     script:
         '../scripts/osemosys_global/geographic_filter.py'
 
+rule discount_rate_idv:
+    message:
+        'Generating technology-specific discount rates (DiscountRateIdv)...'
+    input:
+        custom_rates = config.get(
+            "discount_rate_idv_data",
+            "resources/data/custom/discount_rates.csv"
+        ),
+        tech_list = 'results/data/TECHNOLOGY.csv',
+        year_list = 'results/data/YEAR.csv'
+    params:
+        config = config
+    output:
+        csv = 'results/data/DiscountRateIdv.csv'
+    log:
+        log = 'results/logs/discount_rate_idv.log'
+    script:
+        '../scripts/osemosys_global/discount_rates.py'
+
 rule copy_otoole_confg:
     message:
         'Copying otoole configuration file...'

@@ -84,6 +84,11 @@ DiscountRate:
     type: param
     dtype: float
     default: 0.1
+DiscountRateIdv:
+    indices: [REGION, TECHNOLOGY, YEAR]
+    type: param
+    dtype: float
+    default: 0.1
 DiscountRateStorage:
     indices: [REGION,STORAGE]
     type: param

@@ -111,14 +111,14 @@ user_capacity_files = [
 fuel_limit_files = [
     'TotalTechnologyAnnualActivityUpperLimit',
 ]
-
+DEDICATED_PARAMS = ["DiscountRateIdv"]
 GENERATED_CSVS = (
     power_plant_files + transmission_files + storage_files + timeslice_files \
     + reserves_files + demand_files + emission_files + fuel_limit_files
 
 )
 GENERATED_CSVS = [Path(x).stem for x in GENERATED_CSVS]
-EMPTY_CSVS = [x for x in OTOOLE_PARAMS if x not in GENERATED_CSVS]
+EMPTY_CSVS = [x for x in OTOOLE_PARAMS if x not in GENERATED_CSVS and x not in DEDICATED_PARAMS ]
 
 # rules
 

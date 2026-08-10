@@ -15,6 +15,15 @@ seasons:
   S2: [7, 8, 9, 10, 11, 12]
 
 timeshift: 0 # value between -11 and 12
+
+# ── Cost of Capital Parameters ───────────────────────────────────────────────
+# Select which scenario column to use from discount_rates.csv
+# Options: SSP1, SSP2, SSP3, SSP4, SSP5
+discount_rate_idv_scenario: "SSP5"
+
+# Path to the discount rate input file
+discount_rate_idv_data: "resources/data/custom/discount_rates.csv"
+# ─────────────────────────────────────────────────────────────────────────────
   
 # Spatial Parameters 
 geographic_scope:
