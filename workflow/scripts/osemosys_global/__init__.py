@@ -1,16 +1,14 @@
 
 # -*- coding: utf-8 -*-
-from pkg_resources import DistributionNotFound, get_distribution
-# from osemosys_global.geographic_filter import extract_country
+try:
+    from importlib.metadata import version, PackageNotFoundError
+except ImportError:  # pragma: no cover
+    from importlib_metadata import version, PackageNotFoundError  # backport if needed
 
 try:
-    # Change here if project is renamed and does not equal the package name
-    dist_name = __name__
-    __version__ = get_distribution(dist_name).version
-except DistributionNotFound:
+    __version__ = version("osemosys_global")
+except PackageNotFoundError:
     __version__ = "unknown"
-finally:
-    del get_distribution, DistributionNotFound
 
 __all__ = ["extract_country"]
 
