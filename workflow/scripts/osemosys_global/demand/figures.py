@@ -162,6 +162,7 @@ if __name__ == "__main__":
         file_iamc_missing = snakemake.input.iamc_missing
         regression_plot = snakemake.output.regression
         projection_plot = snakemake.output.projection
+        ssp_scenario = snakemake.params.scenario
     else:
         file_plexos = "resources/data/default/PLEXOS_World_2015_Gold_V1.1.xlsx"
         file_ember = "resources/data/default/ember_yearly_electricity_data.csv"
@@ -171,6 +172,7 @@ if __name__ == "__main__":
         file_iamc_missing = (
             "resources/data/default/iamc_db_POP_GDPppp_URB_Countries_Missing.xlsx"
         )
+        ssp_scenario = "SSP2"
         regression_plot = "regression.png"
         projection_plot = "projection.png"
 
@@ -185,9 +187,9 @@ if __name__ == "__main__":
     iamc_pop_missing = import_iamc_missing(file_iamc_missing, "pop")
     iamc_urb_missing = import_iamc_missing(file_iamc_missing, "urb")
 
-    iamc_gdp = get_iamc_data(plexos, iamc_gdp_orig, iamc_gdp_missing, "gdp")
-    iamc_pop = get_iamc_data(plexos, iamc_pop_orig, iamc_pop_missing, "pop")
-    iamc_urb = get_iamc_data(plexos, iamc_urb_orig, iamc_urb_missing, "urb")
+    iamc_gdp = get_iamc_data(plexos, iamc_gdp_orig, iamc_gdp_missing, "gdp", ssp_scenario)
+    iamc_pop = get_iamc_data(plexos, iamc_pop_orig, iamc_pop_missing, "pop", ssp_scenario)
+    iamc_urb = get_iamc_data(plexos, iamc_urb_orig, iamc_urb_missing, "urb", ssp_scenario)
 
     # create regression plots
 

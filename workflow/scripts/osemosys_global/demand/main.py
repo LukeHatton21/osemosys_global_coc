@@ -63,6 +63,7 @@ if __name__ == "__main__":
         csv = snakemake.output.csv_files
         start_year = snakemake.params.start_year
         end_year = snakemake.params.end_year
+        ssp_scenario = snakemake.params.scenario
         custom_nodes = snakemake.params.custom_nodes
         custom_nodes_data = snakemake.input.custom_nodes
     else:
@@ -92,9 +93,9 @@ if __name__ == "__main__":
     iamc_pop_missing = import_iamc_missing(file_iamc_missing, "pop")
     iamc_urb_missing = import_iamc_missing(file_iamc_missing, "urb")
 
-    iamc_gdp = get_iamc_data(plexos, iamc_gdp_orig, iamc_gdp_missing, "gdp")
-    iamc_pop = get_iamc_data(plexos, iamc_pop_orig, iamc_pop_missing, "pop")
-    iamc_urb = get_iamc_data(plexos, iamc_urb_orig, iamc_urb_missing, "urb")
+    iamc_gdp = get_iamc_data(plexos, iamc_gdp_orig, iamc_gdp_missing, "gdp", ssp_scenario)
+    iamc_pop = get_iamc_data(plexos, iamc_pop_orig, iamc_pop_missing, "pop", ssp_scenario)
+    iamc_urb = get_iamc_data(plexos, iamc_urb_orig, iamc_urb_missing, "urb", ssp_scenario)
 
     # perfrom regression and projection
     input_data = {
@@ -111,7 +112,7 @@ if __name__ == "__main__":
 
     df = df[df.YEAR.isin(range(start_year, end_year + 1))]
 
-    all_custom = import_custom_demand_data(custom_nodes_data)
+    all_custom = import_custom_demand_data(custom_nodes_data, ssp_scenario)
     custom = get_custom_demand_data(all_custom, start_year, end_year)
     df = merge_default_custom_data(df, custom)
 

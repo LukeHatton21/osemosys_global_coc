@@ -5,6 +5,7 @@ import numpy as np
 import logging
 import yaml
 import os
+import sys
 
 
 # ── Constants ─────────────────────────────────────────────────────────────────
@@ -70,24 +71,24 @@ def expand_to_model_years(
     Returns a fully expanded DataFrame with every [COUNTRY, TECH_TYPE, YEAR]
     combination present.
     """
+    if df.empty:
+        return pd.DataFrame(columns=["COUNTRY", "TECH_TYPE", "YEAR", "VALUE"])
+
     groups = []
 
     for (country, tech_type), group in df.groupby(["COUNTRY", "TECH_TYPE"]):
-        # Reindex to all model years
         group = (
             group
             .set_index("YEAR")
             .reindex(model_years)
         )
-        group["COUNTRY"]   = country
+        group["COUNTRY"] = country
         group["TECH_TYPE"] = tech_type
 
-        # Forward-fill from last known value, then backward-fill
-        # with default_rate for years before first specified year
         group["VALUE"] = (
             group["VALUE"]
-            .ffill()                        # forward-fill gaps
-            .fillna(default_rate)           # fill any remaining NaN (before first year)
+            .ffill()
+            .fillna(default_rate)
         )
 
         group = group.reset_index().rename(columns={"index": "YEAR"})

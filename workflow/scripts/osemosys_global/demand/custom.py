@@ -14,15 +14,21 @@ def _get_custom_demand_expected(
     df = pd.DataFrame(
         list(itertools.product(nodes, years)), columns=["CUSTOM_NODE", "YEAR"]
     )
+
     df["REGION"] = "GLOBAL"
     df["FUEL"] = "ELC" + df["CUSTOM_NODE"] + "02"
 
     return df
 
 
-def import_custom_demand_data(csv: str) -> pd.DataFrame:
+def import_custom_demand_data(csv: str, ssp_scenario: str) -> pd.DataFrame:
     """Gets all custom demand data"""
-    return pd.read_csv(csv)
+
+    df = pd.read_csv(csv)
+
+    if ssp_scenario in ["SSP1", "SSP2", "SSP3", "SSP4", "SSP5"]:
+        df = df.loc[df["Scenario"] == ssp_scenario]
+    return df
 
 
 def get_custom_demand_data(

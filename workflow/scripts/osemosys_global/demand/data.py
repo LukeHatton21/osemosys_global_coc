@@ -145,7 +145,7 @@ def _iamc_data_available(
 
 
 def get_iamc_data(
-    plexos: pd.DataFrame, iamc: pd.DataFrame, iamc_missing: pd.DataFrame, metric: str
+    plexos: pd.DataFrame, iamc: pd.DataFrame, iamc_missing: pd.DataFrame, metric: str, ssp_scenario: str
 ) -> pd.DataFrame:
     """Gets full iamc data"""
 
@@ -161,13 +161,13 @@ def get_iamc_data(
     spatial_mapping = get_spatial_mapping_country(plexos)
 
     df_original = iamc[
-        (iamc["Model"] == model) & (iamc["Scenario"] == PATHWAY)
+        (iamc["Model"] == model) & (iamc["Scenario"] == ssp_scenario)
     ].set_index("Region")
 
     if not _iamc_data_available(df_original, iamc_missing, spatial_mapping):
         raise ValueError("Country data for is not available in custom dataset!")
 
-    df_missing = iamc_missing[(iamc_missing["Scenario"] == PATHWAY)]
+    df_missing = iamc_missing[(iamc_missing["Scenario"] == ssp_scenario)]
 
     df = pd.concat([df_original, df_missing])
 

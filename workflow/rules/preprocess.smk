@@ -142,7 +142,8 @@ rule demand_projections:
     params:
         start_year = config['startYear'],
         end_year = config['endYear'],
-        custom_nodes = config["nodes_to_add"]
+        custom_nodes = config["nodes_to_add"],
+        scenario = config['discount_rate_idv_scenario']
     output:
         csv_files = 'results/data/SpecifiedAnnualDemand.csv',
     log:
@@ -158,7 +159,7 @@ rule powerplant:
         plexos = 'resources/data/default/PLEXOS_World_2015_Gold_V1.1.xlsx',
         res_limit = 'resources/data/default/PLEXOS_World_MESSAGEix_GLOBIOM_Softlink.xlsx',
         fuel_limit = 'resources/data/custom/fuel_limits.csv',
-        build_rates = 'resources/data/custom/powerplant_build_rates.csv',        
+        build_rates = 'resources/data/custom/powerplant_build_rates.csv',
         weo_costs = 'resources/data/default/weo_2020_powerplant_costs.csv',
         weo_regions = 'resources/data/default/weo_region_mapping.csv',
         default_op_life = 'resources/data/custom/operational_life.csv',
@@ -296,7 +297,7 @@ rule timeslice:
         custom_hyd_profiles = 'resources/data/custom/RE_profiles_HYD.csv',
         custom_spv_profiles = 'resources/data/custom/RE_profiles_SPV.csv',
         custom_wof_profiles = 'resources/data/custom/RE_profiles_WOF.csv',
-        custom_won_profiles = 'resources/data/custom/RE_profiles_WON.csv',                                
+        custom_won_profiles = 'resources/data/custom/RE_profiles_WON.csv',
     params:
         start_year = config['startYear'],
         end_year = config['endYear'],
@@ -347,6 +348,8 @@ rule demand_projection_figures:
         iamc_urb = "resources/data/default/iamc_db_URB_Countries.xlsx",
         iamc_missing = "resources/data/default/iamc_db_POP_GDPppp_URB_Countries_Missing.xlsx",
         ember = "resources/data/default/ember_yearly_electricity_data.csv"
+    params:
+        scenario = config['discount_rate_idv_scenario']
     output:
         regression = 'results/figs/regression.png',
         projection = 'results/figs/projection.png'

@@ -1,5 +1,5 @@
 # Scenario Name 
-scenario: "India"
+scenario: "FULLSSP2DEFAULTEL"
 
 # Temporal Parameters 
 startYear: 2021
@@ -19,15 +19,173 @@ timeshift: 0 # value between -11 and 12
 # ── Cost of Capital Parameters ───────────────────────────────────────────────
 # Select which scenario column to use from discount_rates.csv
 # Options: SSP1, SSP2, SSP3, SSP4, SSP5
-discount_rate_idv_scenario: "SSP5"
+discount_rate_idv_scenario: "SSP2"
 
 # Path to the discount rate input file
-discount_rate_idv_data: "resources/data/custom/discount_rates.csv"
+discount_rate_idv_data: "resources/data/custom/discount_rates_empty.csv"
 # ─────────────────────────────────────────────────────────────────────────────
   
 # Spatial Parameters 
 geographic_scope:
-  - "IND"
+- "AFG"
+- "AGO"
+- "ALB"
+- "ARE"
+- "ARG"
+- "ARM"
+- "AUS"
+- "AUT"
+- "AZE"
+- "BDI"
+- "BEL"
+- "BEN"
+- "BFA"
+- "BGD"
+- "BGR"
+- "BHR"
+- "BIH"
+- "BLR"
+- "BLZ"
+- "BOL"
+- "BRA"
+- "BTN"
+- "BWA"
+- "CAF"
+- "CAN"
+- "CHE"
+- "CHL"
+- "CHN"
+- "CIV"
+- "CMR"
+- "COD"
+- "COG"
+- "COL"
+- "CRI"
+- "CUB"
+- "CYP"
+- "CZE"
+- "DEU"
+- "DJI"
+- "DNK"
+- "DOM"
+- "DZA"
+- "ECU"
+- "EGY"
+- "ESP"
+- "EST"
+- "ETH"
+- "FIN"
+- "FJI"
+- "FRA"
+- "GAB"
+- "GBR"
+- "GEO"
+- "GHA"
+- "GIN"
+- "GMB"
+- "GNB"
+- "GNQ"
+- "GRC"
+- "GTM"
+- "GUY"
+- "HND"
+- "HRV"
+- "HTI"
+- "HUN"
+- "IDN"
+- "IND"
+- "IRL"
+- "IRN"
+- "IRQ"
+- "ISL"
+- "ISR"
+- "ITA"
+- "JAM"
+- "JOR"
+- "JPN"
+- "KAZ"
+- "KEN"
+- "KGZ"
+- "KHM"
+- "KOR"
+- "KWT"
+- "LAO"
+- "LBN"
+- "LBR"
+- "LBY"
+- "LKA"
+- "LSO"
+- "LTU"
+- "LUX"
+- "LVA"
+- "MAR"
+- "MDA"
+- "MDG"
+- "MEX"
+- "MKD"
+- "MLI"
+- "MLT"
+- "MMR"
+- "MNE"
+- "MNG"
+- "MOZ"
+- "MRT"
+- "MUS"
+- "MWI"
+- "MYS"
+- "NAM"
+- "NER"
+- "NGA"
+- "NIC"
+- "NLD"
+- "NOR"
+- "NPL"
+- "NZL"
+- "OMN"
+- "PAK"
+- "PAN"
+- "PER"
+- "PHL"
+- "PNG"
+- "POL"
+- "PRT"
+- "PRY"
+- "QAT"
+- "ROU"
+- "RUS"
+- "RWA"
+- "SAU"
+- "SDN"
+- "SEN"
+- "SGP"
+- "SLE"
+- "SLV"
+- "SOM"
+- "SRB"
+- "SUR"
+- "SVK"
+- "SVN"
+- "SWE"
+- "SWZ"
+- "SYR"
+- "TCD"
+- "TGO"
+- "THA"
+- "TJK"
+- "TKM"
+- "TTO"
+- "TUN"
+- "TUR"
+- "TZA"
+- "UGA"
+- "UKR"
+- "URY"
+- "USA"
+- "UZB"
+- "VNM"
+- "ZAF"
+- "ZMB"
+- "ZWE"
 
 # Set to True if transmission should be included
 crossborderTrade: True
@@ -52,15 +210,15 @@ storage_existing: True
 # If custom nodes are defined in 'nodes_to_add' and you want to assign
 # GESDB data to custom nodes you'll have to update 'GESDB_region_mapping'
 # in 'resources/data/custom'.
-storage_planned: True
+storage_planned: False
 
 # Emission Parameters 
 emission_penalty: 
 # - [EMISSION, COUNTRY, START_YEAR, END_YEAR, VALUE]
 # EXAMPLE:  - ["CO2", "IND", 2020, 2050, 2.1]
 # where VALUE is in M$/MT CO2
- - ["CO2", "IND", 2021, 2050, 2.1]
 
+emission_limit:
 # Investment Parameters 
 no_invest_technologies: 
   - "CSP"
@@ -77,7 +235,7 @@ no_invest_technologies:
 results_by_country: True
 
 # solver parameters
-solver: "cbc" # cbc, cplex, gurobi
+solver: "gurobi" # cbc, cplex, gurobi
 
 user_defined_capacity:
 # technology: [capacity, 
@@ -188,7 +346,6 @@ reserve_margin_technologies:
   WOF : 10
   WON : 10
 
-emission_limit:
 # - [EMISSION, COUNTRY, TYPE, YEAR, VALUE]
 # where VALUE is emissions in million tonnes of CO2-equivalent and YEAR is  
 # when that constraint must be adhered to. All years between multiple emission 
@@ -197,6 +354,166 @@ emission_limit:
 # previous target years. A combination of TYPE targets can be set per EMISSION and
 # COUNTRY yet only a single target per YEAR.
 # EXAMPLE: - ["CO2", "IND", "LINEAR", 2050, 0]
+emission_limit:
+ - ["CO2", "AFG", "LINEAR", 2050, 0]
+ - ["CO2", "AGO", "LINEAR", 2050, 0]
+ - ["CO2", "ALB", "LINEAR", 2050, 0]
+ - ["CO2", "ARE", "LINEAR", 2050, 0]
+ - ["CO2", "ARG", "LINEAR", 2050, 0]
+ - ["CO2", "ARM", "LINEAR", 2050, 0]
+ - ["CO2", "AUS", "LINEAR", 2050, 0]
+ - ["CO2", "AUT", "LINEAR", 2050, 0]
+ - ["CO2", "AZE", "LINEAR", 2050, 0]
+ - ["CO2", "BDI", "LINEAR", 2050, 0]
+ - ["CO2", "BEL", "LINEAR", 2050, 0]
+ - ["CO2", "BEN", "LINEAR", 2050, 0]
+ - ["CO2", "BFA", "LINEAR", 2050, 0]
+ - ["CO2", "BGD", "LINEAR", 2050, 0]
+ - ["CO2", "BGR", "LINEAR", 2050, 0]
+ - ["CO2", "BHR", "LINEAR", 2050, 0]
+ - ["CO2", "BIH", "LINEAR", 2050, 0]
+ - ["CO2", "BLR", "LINEAR", 2050, 0]
+ - ["CO2", "BLZ", "LINEAR", 2050, 0]
+ - ["CO2", "BOL", "LINEAR", 2050, 0]
+ - ["CO2", "BRA", "LINEAR", 2050, 0]
+ - ["CO2", "BTN", "LINEAR", 2050, 0]
+ - ["CO2", "BWA", "LINEAR", 2050, 0]
+ - ["CO2", "CAF", "LINEAR", 2050, 0]
+ - ["CO2", "CAN", "LINEAR", 2050, 0]
+ - ["CO2", "CHE", "LINEAR", 2050, 0]
+ - ["CO2", "CHL", "LINEAR", 2050, 0]
+ - ["CO2", "CHN", "LINEAR", 2050, 0]
+ - ["CO2", "CIV", "LINEAR", 2050, 0]
+ - ["CO2", "CMR", "LINEAR", 2050, 0]
+ - ["CO2", "COD", "LINEAR", 2050, 0]
+ - ["CO2", "COG", "LINEAR", 2050, 0]
+ - ["CO2", "COL", "LINEAR", 2050, 0]
+ - ["CO2", "CRI", "LINEAR", 2050, 0]
+ - ["CO2", "CUB", "LINEAR", 2050, 0]
+ - ["CO2", "CYP", "LINEAR", 2050, 0]
+ - ["CO2", "CZE", "LINEAR", 2050, 0]
+ - ["CO2", "DEU", "LINEAR", 2050, 0]
+ - ["CO2", "DJI", "LINEAR", 2050, 0]
+ - ["CO2", "DNK", "LINEAR", 2050, 0]
+ - ["CO2", "DOM", "LINEAR", 2050, 0]
+ - ["CO2", "DZA", "LINEAR", 2050, 0]
+ - ["CO2", "ECU", "LINEAR", 2050, 0]
+ - ["CO2", "EGY", "LINEAR", 2050, 0]
+ - ["CO2", "ESP", "LINEAR", 2050, 0]
+ - ["CO2", "EST", "LINEAR", 2050, 0]
+ - ["CO2", "ETH", "LINEAR", 2050, 0]
+ - ["CO2", "FIN", "LINEAR", 2050, 0]
+ - ["CO2", "FJI", "LINEAR", 2050, 0]
+ - ["CO2", "FRA", "LINEAR", 2050, 0]
+ - ["CO2", "GAB", "LINEAR", 2050, 0]
+ - ["CO2", "GBR", "LINEAR", 2050, 0]
+ - ["CO2", "GEO", "LINEAR", 2050, 0]
+ - ["CO2", "GHA", "LINEAR", 2050, 0]
+ - ["CO2", "GIN", "LINEAR", 2050, 0]
+ - ["CO2", "GMB", "LINEAR", 2050, 0]
+ - ["CO2", "GNB", "LINEAR", 2050, 0]
+ - ["CO2", "GNQ", "LINEAR", 2050, 0]
+ - ["CO2", "GRC", "LINEAR", 2050, 0]
+ - ["CO2", "GTM", "LINEAR", 2050, 0]
+ - ["CO2", "GUY", "LINEAR", 2050, 0]
+ - ["CO2", "HND", "LINEAR", 2050, 0]
+ - ["CO2", "HRV", "LINEAR", 2050, 0]
+ - ["CO2", "HTI", "LINEAR", 2050, 0]
+ - ["CO2", "HUN", "LINEAR", 2050, 0]
+ - ["CO2", "IDN", "LINEAR", 2050, 0]
+ - ["CO2", "IND", "LINEAR", 2050, 0]
+ - ["CO2", "IRL", "LINEAR", 2050, 0]
+ - ["CO2", "IRN", "LINEAR", 2050, 0]
+ - ["CO2", "IRQ", "LINEAR", 2050, 0]
+ - ["CO2", "ISL", "LINEAR", 2050, 0]
+ - ["CO2", "ISR", "LINEAR", 2050, 0]
+ - ["CO2", "ITA", "LINEAR", 2050, 0]
+ - ["CO2", "JAM", "LINEAR", 2050, 0]
+ - ["CO2", "JOR", "LINEAR", 2050, 0]
+ - ["CO2", "JPN", "LINEAR", 2050, 0]
+ - ["CO2", "KAZ", "LINEAR", 2050, 0]
+ - ["CO2", "KEN", "LINEAR", 2050, 0]
+ - ["CO2", "KGZ", "LINEAR", 2050, 0]
+ - ["CO2", "KHM", "LINEAR", 2050, 0]
+ - ["CO2", "KOR", "LINEAR", 2050, 0]
+ - ["CO2", "KWT", "LINEAR", 2050, 0]
+ - ["CO2", "LAO", "LINEAR", 2050, 0]
+ - ["CO2", "LBN", "LINEAR", 2050, 0]
+ - ["CO2", "LBR", "LINEAR", 2050, 0]
+ - ["CO2", "LBY", "LINEAR", 2050, 0]
+ - ["CO2", "LKA", "LINEAR", 2050, 0]
+ - ["CO2", "LSO", "LINEAR", 2050, 0]
+ - ["CO2", "LTU", "LINEAR", 2050, 0]
+ - ["CO2", "LUX", "LINEAR", 2050, 0]
+ - ["CO2", "LVA", "LINEAR", 2050, 0]
+ - ["CO2", "MAR", "LINEAR", 2050, 0]
+ - ["CO2", "MDA", "LINEAR", 2050, 0]
+ - ["CO2", "MDG", "LINEAR", 2050, 0]
+ - ["CO2", "MEX", "LINEAR", 2050, 0]
+ - ["CO2", "MKD", "LINEAR", 2050, 0]
+ - ["CO2", "MLI", "LINEAR", 2050, 0]
+ - ["CO2", "MLT", "LINEAR", 2050, 0]
+ - ["CO2", "MMR", "LINEAR", 2050, 0]
+ - ["CO2", "MNE", "LINEAR", 2050, 0]
+ - ["CO2", "MNG", "LINEAR", 2050, 0]
+ - ["CO2", "MOZ", "LINEAR", 2050, 0]
+ - ["CO2", "MRT", "LINEAR", 2050, 0]
+ - ["CO2", "MUS", "LINEAR", 2050, 0]
+ - ["CO2", "MWI", "LINEAR", 2050, 0]
+ - ["CO2", "MYS", "LINEAR", 2050, 0]
+ - ["CO2", "NAM", "LINEAR", 2050, 0]
+ - ["CO2", "NER", "LINEAR", 2050, 0]
+ - ["CO2", "NGA", "LINEAR", 2050, 0]
+ - ["CO2", "NIC", "LINEAR", 2050, 0]
+ - ["CO2", "NLD", "LINEAR", 2050, 0]
+ - ["CO2", "NOR", "LINEAR", 2050, 0]
+ - ["CO2", "NPL", "LINEAR", 2050, 0]
+ - ["CO2", "NZL", "LINEAR", 2050, 0]
+ - ["CO2", "OMN", "LINEAR", 2050, 0]
+ - ["CO2", "PAK", "LINEAR", 2050, 0]
+ - ["CO2", "PAN", "LINEAR", 2050, 0]
+ - ["CO2", "PER", "LINEAR", 2050, 0]
+ - ["CO2", "PHL", "LINEAR", 2050, 0]
+ - ["CO2", "PNG", "LINEAR", 2050, 0]
+ - ["CO2", "POL", "LINEAR", 2050, 0]
+ - ["CO2", "PRT", "LINEAR", 2050, 0]
+ - ["CO2", "PRY", "LINEAR", 2050, 0]
+ - ["CO2", "QAT", "LINEAR", 2050, 0]
+ - ["CO2", "ROU", "LINEAR", 2050, 0]
+ - ["CO2", "RUS", "LINEAR", 2050, 0]
+ - ["CO2", "RWA", "LINEAR", 2050, 0]
+ - ["CO2", "SAU", "LINEAR", 2050, 0]
+ - ["CO2", "SDN", "LINEAR", 2050, 0]
+ - ["CO2", "SEN", "LINEAR", 2050, 0]
+ - ["CO2", "SGP", "LINEAR", 2050, 0]
+ - ["CO2", "SLE", "LINEAR", 2050, 0]
+ - ["CO2", "SLV", "LINEAR", 2050, 0]
+ - ["CO2", "SOM", "LINEAR", 2050, 0]
+ - ["CO2", "SRB", "LINEAR", 2050, 0]
+ - ["CO2", "SUR", "LINEAR", 2050, 0]
+ - ["CO2", "SVK", "LINEAR", 2050, 0]
+ - ["CO2", "SVN", "LINEAR", 2050, 0]
+ - ["CO2", "SWE", "LINEAR", 2050, 0]
+ - ["CO2", "SWZ", "LINEAR", 2050, 0]
+ - ["CO2", "SYR", "LINEAR", 2050, 0]
+ - ["CO2", "TCD", "LINEAR", 2050, 0]
+ - ["CO2", "TGO", "LINEAR", 2050, 0]
+ - ["CO2", "THA", "LINEAR", 2050, 0]
+ - ["CO2", "TJK", "LINEAR", 2050, 0]
+ - ["CO2", "TKM", "LINEAR", 2050, 0]
+ - ["CO2", "TTO", "LINEAR", 2050, 0]
+ - ["CO2", "TUN", "LINEAR", 2050, 0]
+ - ["CO2", "TUR", "LINEAR", 2050, 0]
+ - ["CO2", "TZA", "LINEAR", 2050, 0]
+ - ["CO2", "UGA", "LINEAR", 2050, 0]
+ - ["CO2", "UKR", "LINEAR", 2050, 0]
+ - ["CO2", "URY", "LINEAR", 2050, 0]
+ - ["CO2", "USA", "LINEAR", 2050, 0]
+ - ["CO2", "UZB", "LINEAR", 2050, 0]
+ - ["CO2", "VNM", "LINEAR", 2050, 0]
+ - ["CO2", "ZAF", "LINEAR", 2050, 0]
+ - ["CO2", "ZMB", "LINEAR", 2050, 0]
+ - ["CO2", "ZWE", "LINEAR", 2050, 0]
 
 min_generation_factors:
 # TECHNOLOGY: [VALUE, COUNTRY, YEAR]
